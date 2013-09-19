@@ -1,11 +1,12 @@
 package com.pahimar.letsmod;
 
 import com.pahimar.letsmod.lib.Reference;
+import com.pahimar.letsmod.proxy.CommonProxy;
 
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.Init;
-import cpw.mods.fml.common.Mod.PostInit;
-import cpw.mods.fml.common.Mod.PreInit;
+import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.Mod.Instance;
+import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -21,6 +22,12 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
  */
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION)
 public class LetsMod {
+	
+	@Instance(Reference.MOD_ID)
+	public static LetsMod instance;
+	
+	@SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
+	public static CommonProxy proxy;
 
     /***
      * This is code that is executed prior to your mod being initialized into of Minecraft
@@ -33,7 +40,7 @@ public class LetsMod {
      * 
      * @param event The Forge ModLoader pre-initialization event
      */
-    @PreInit
+    @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         
     }
@@ -49,7 +56,7 @@ public class LetsMod {
      * 
      * @param event The Forge ModLoader initialization event
      */
-    @Init
+    @EventHandler
     public void init(FMLInitializationEvent event) {
         
     }
@@ -61,7 +68,7 @@ public class LetsMod {
      * 
      * @param event The Forge ModLoader post-initialization event
      */
-    @PostInit
+    @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
         
     }
